@@ -1,41 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_striteri.c                                      :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thdexmun <thdexmun@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/26 20:57:34 by thdexmun          #+#    #+#             */
-/*   Updated: 2026/07/30 14:54:15 by thdexmun         ###   ########.fr       */
+/*   Updated: 2026/07/27 16:05:33 by thdexmun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_striteri(char *s, void (*f)(unsigned int, char *))
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	unsigned int	index;
-
-	if (!s)
-		return ;
-	index = 0;
-	while (s[index])
+	while (lst)
 	{
-		f(index, &s[index]);
-		index++;
+		f(lst->content);
+		lst = lst->next;
 	}
 }
 
 //#include <stdio.h>
 //#include <stdlib.h>
 //
-//void	test(unsigned int n, char *c)
+//void	test(void *a)
 //{
-//	printf("%u: ", n);
-//	printf("%c\n", *c);
+//	printf("%s\n", (char *)a);
 //}
 //
 //int	main(int argc, char **argv)
 //{
-//	ft_striteri(argv[argc - 1], &test);
+//	t_list	**out;
+//	int	index = 0;
+//	t_list *temp;
+//	t_list *temp2;
+//
+//	out = (t_list **)malloc(sizeof(t_list *));
+//	*out = ft_lstnew((void *)argv[0]);
+//	while (++index < argc)
+//		ft_lstadd_back(out, ft_lstnew(argv[index]));
+//	ft_lstiter(*out, &test);
+//	temp = *out;
+//	while (temp)
+//	{
+//		printf("%s, ", (char *)temp->content);
+//		temp2 = temp;
+//		temp = temp->next;
+//		free(temp2);
+//	}
+//	free(out);
 //}

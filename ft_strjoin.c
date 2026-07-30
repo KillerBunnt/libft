@@ -3,38 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdexmund <tdexmund@student.42kl.edu.my>    +#+  +:+       +#+        */
+/*   By: thdexmun <thdexmun@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/16 16:02:40 by tdexmund          #+#    #+#             */
-/*   Updated: 2024/06/24 16:13:17 by tdexmund         ###   ########.fr       */
+/*   Created: 2026/07/26 20:57:34 by thdexmun          #+#    #+#             */
+/*   Updated: 2026/07/30 14:56:27 by thdexmun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(const char *s1, const char *s2)
 {
-	char	*temp;
-	int		count;
-	int		size;
+	size_t	s1_len;
+	size_t	s2_len;
+	char	*out;
+	size_t	index;
 
-	count = 0;
-	size = 0;
-	while (s1[count])
-		count++;
-	while (s2[size])
-		size++;
-	size += (count + 1);
-	count = -1;
-	temp = (char *)malloc(size * sizeof(char));
-	if (temp == 0)
-		return (0);
-	while (s1[++count])
-		temp[count] = s1[count];
-	count--;
-	size = -1;
-	while (s2[++size])
-		temp[++count] = s2[size];
-	temp[count + 1] = 0;
-	return (temp);
+	if (!s1 && !s2)
+		return (NULL);
+	if (!s1)
+		return (ft_strdup(s2));
+	if (!s2)
+		return (ft_strdup(s1));
+	s1_len = ft_strlen(s1);
+	s2_len = ft_strlen(s2);
+	out = (char *)malloc((s1_len + s2_len + 1) * sizeof(char));
+	if (!out)
+		return (NULL);
+	index = 0;
+	while (*s1)
+		out[index++] = *s1++;
+	while (*s2)
+		out[index++] = *s2++;
+	out[index] = 0;
+	return (out);
 }
+
+//#include <stdio.h>
+//#include <stdlib.h>
+//int	main(int argc, char **argv)
+//{
+//	char *printme = ft_strjoin(argv[argc - 2],
+//		argv[argc - 1]);
+//	printf("%s", printme);
+//	free(printme);
+//}

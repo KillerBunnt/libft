@@ -3,19 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdexmund <tdexmund@student.42kl.edu.my>    +#+  +:+       +#+        */
+/*   By: thdexmun <thdexmun@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/16 15:35:08 by tdexmund          #+#    #+#             */
-/*   Updated: 2024/06/24 15:57:30 by tdexmund         ###   ########.fr       */
+/*   Created: 2026/07/25 14:36:45 by thdexmun          #+#    #+#             */
+/*   Updated: 2026/07/25 15:00:17 by thdexmun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isascii(int x)
+int	ft_isascii(int c)
 {
-	if (x >= 0 && x <= 127)
+	if (c >= 0 && c <= 127)
 		return (1);
-	else
-		return (0);
+	return (0);
 }
+
+//#include <stdio.h>
+//#include <ctype.h>
+//int main(int argc, char **argv)
+//{
+//	(void)argc;
+//	(void)argv;
+//	printf("ft: %d\n", ft_isascii(127));
+//	printf("or: %d\n", isascii(127));
+//}

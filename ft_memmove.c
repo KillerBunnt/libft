@@ -3,38 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdexmund <tdexmund@student.42kl.edu.my>    +#+  +:+       +#+        */
+/*   By: thdexmun <thdexmun@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/16 15:43:34 by tdexmund          #+#    #+#             */
-/*   Updated: 2024/06/24 18:01:23 by tdexmund         ###   ########.fr       */
+/*   Created: 2026/07/26 14:28:52 by thdexmun          #+#    #+#             */
+/*   Updated: 2026/07/30 15:18:27 by thdexmun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *to, const void *from, size_t byte)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	unsigned int	count;
-	char			*hold1;
-	const char		*hold2;
+	unsigned char	*tsrc;
+	unsigned char	*tdest;
+	size_t			index;
 
-	hold1 = to;
-	hold2 = from;
-	if (from == 0 && to == 0)
-		return (0);
-	if (to == from)
-		return (to);
-	if (to < from)
-		count = 0;
-	else
-		count = byte - 1;
-	while (count < byte && count >= 0)
-	{
-		hold1[count] = hold2[count];
-		if (to < from)
-			count++;
-		else
-			count--;
-	}
-	return (to);
+	if (!src || !dest || !n)
+		return (dest);
+	if (dest - src <= 0)
+		return (ft_memcpy(dest, src, n));
+	tsrc = (unsigned char *)src;
+	tdest = (unsigned char *)dest;
+	index = n;
+	while (index-- > 0)
+		tdest[index] = tsrc[index];
+	return (dest);
 }
+
+//#include <stdio.h>
+//#include <string.h>
+//int main(int argc, char **argv)
+//{
+//	char	*dest1 = argv[argc - 1] + 1;
+//	char	*src1 = argv[argc - 1];
+//	char	*dest2 = argv[argc - 2] + 1;
+//	char	*src2 = argv[argc - 2];
+//	ft_memmove(src1, dest1, 8);
+//	memmove(src2, dest2, 8);
+//	printf("my: %s\n", argv[argc - 1]);
+//	printf("or: %s", argv[argc - 2]);
+////	printf("%zu\n", (size_t)-1);
+////	printf("%ld\n", (long)18446744073709551615);
+//}

@@ -3,63 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdexmund <tdexmund@student.42kl.edu.my>    +#+  +:+       +#+        */
+/*   By: thdexmun <thdexmun@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/16 12:53:46 by tdexmund          #+#    #+#             */
-/*   Updated: 2024/06/24 16:45:32 by tdexmund         ###   ########.fr       */
+/*   Created: 2026/07/26 17:31:51 by thdexmun          #+#    #+#             */
+/*   Updated: 2026/07/30 13:47:13 by thdexmun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	white(char x)
+static int	ft_isspace(char c)
 {
-	char	*whites;
-	int		count;
-
-	count = -1;
-	whites = " \t\r\n\v\f";
-	while (whites[++count])
-	{
-		if (x == whites[count])
-			return (1);
-	}
+	if (c == ' ' || c == '\f' || c == '\n'
+		|| c == '\r' || c == '\t' || c == '\v')
+		return (1);
 	return (0);
 }
 
-static int	fneg(int *fix, char e)
+int	ft_atoi(const char *nptr)
 {
-	*fix = 2;
-	if (e == '-')
-		return (-1);
-	return (1);
-}
+	int	out;
+	int	sign;
+	int	digits;
 
-int	ft_atoi(const char *str)
-{
-	int	count;
-	int	send;
-	int	fix;
-	int	neg;
-
-	fix = 0;
-	count = 0;
-	send = 0;
-	neg = 1;
-	while (str[count])
+	while (ft_isspace(*nptr))
+		nptr++;
+	sign = 1;
+	out = 0;
+	if (*nptr == '-' || *nptr == '+')
 	{
-		if (white(str[count]) && (fix < 1))
-			fix = 0;
-		else if ((str[count] == '+' || str[count] == '-') && (fix < 2))
-			neg *= fneg(&fix, str[count]);
-		else if (str[count] >= '0' && str[count] <= '9')
-		{
-			fix = 2;
-			send = send * 10 + (str[count] - '0');
-		}
-		else
-			return (send * neg);
-		count++;
+		if (*nptr == '-')
+			sign = -1;
+		nptr++;
 	}
-	return (send * neg);
+	digits = 0;
+	while (nptr[digits] >= '0' && nptr[digits] <= '9')
+		out = out * 10 + (sign * (nptr[digits++] - '0'));
+	return (out);
 }
+
+//#include <stdio.h>
+//#include <stdlib.h>
+//int main(int argc, char **argv)
+//{
+//	printf("my: %d\n", ft_atoi(argv[argc - 1]));
+//	printf("or: %d\n", atoi(argv[argc - 1]));
+//}

@@ -3,26 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdexmund <tdexmund@student.42kl.edu.my>    +#+  +:+       +#+        */
+/*   By: thdexmun <thdexmun@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/16 15:44:26 by tdexmund          #+#    #+#             */
-/*   Updated: 2024/06/24 16:07:39 by tdexmund         ###   ########.fr       */
+/*   Created: 2026/07/25 15:30:54 by thdexmun          #+#    #+#             */
+/*   Updated: 2026/07/30 14:19:30 by thdexmun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *addr, int fill, unsigned int byte)
+void	*ft_memset(void *s, int c, size_t n)
 {
-	unsigned int	count;
-	char			*test;
+	char	*temp;
+	size_t	index;
 
-	test = addr;
-	count = 0;
-	while (count < byte)
-	{
-		test[count] = fill;
-		count++;
-	}
-	return (test);
+	if (!s)
+		return (NULL);
+	index = 0;
+	temp = (char *)s;
+	while (index < n)
+		temp[index++] = c;
+	return (s);
 }
+
+//#include <stdio.h>
+//int main(int argc, char **argv)
+//{
+//	printf("%s", (char *)ft_memset(argv[argc - 1], ' ', 10));
+//}

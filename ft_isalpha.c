@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdexmund <tdexmund@student.42kl.edu.my>    +#+  +:+       +#+        */
+/*   By: thdexmun <thdexmun@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/16 13:00:11 by tdexmund          #+#    #+#             */
-/*   Updated: 2024/06/24 15:54:53 by tdexmund         ###   ########.fr       */
+/*   Created: 2026/07/25 14:36:45 by thdexmun          #+#    #+#             */
+/*   Updated: 2026/07/27 17:29:38 by thdexmun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,18 @@
 
 int	ft_isalpha(int c)
 {
-	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
-		return (1);
-	return (0);
+	if (c < 'A' || c > 'z')
+		return (0);
+	if (c > 'Z' && c < 'a')
+		return (0);
+	return (1);
 }
-/*
-#include <ctype.h>
-#include <stdio.h>
-int main(){
- 	int i;
 
- 	i = -1;
- 	while (i < 530)
- 	{
- 		if (!!ft_isalpha(i) != !!isalpha(i))
- 			printf("fail");
- 		i++;
- 	}
- 	printf("pass");
-}*/
+//#include <stdio.h>
+//#include <ctype.h>
+//int main(int argc, char **argv)
+//{
+//	(void)argc;
+//	printf("ft: %d\n", ft_isalpha(argv[1][0]));
+//	printf("or: %d\n", isalpha(argv[1][0]));
+//}

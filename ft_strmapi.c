@@ -3,33 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdexmund <tdexmund@student.42kl.edu.my>    +#+  +:+       +#+        */
+/*   By: thdexmun <thdexmun@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/16 16:11:47 by tdexmund          #+#    #+#             */
-/*   Updated: 2024/06/24 16:15:12 by tdexmund         ###   ########.fr       */
+/*   Created: 2026/07/26 20:57:34 by thdexmun          #+#    #+#             */
+/*   Updated: 2026/07/27 14:23:45 by thdexmun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
 {
-	unsigned int	count;
-	unsigned int	count2;
-	char			*temp;
+	size_t	size;
+	size_t	index;
+	char	*out;
 
-	count = 0;
-	count2 = 0;
-	while (s[count])
-		count++;
-	temp = (char *)malloc((count + 1) * sizeof(char));
-	if (temp == 0)
-		return (0);
-	temp[count] = 0;
-	while (count2 < count)
+	size = ft_strlen(s);
+	out = (char *)malloc((size + 1) * sizeof(char));
+	if (!out)
+		return (NULL);
+	out[size] = 0;
+	index = 0;
+	while (index < size)
 	{
-		temp[count2] = (*f)(count2, s[count2]);
-		count2++;
+		out[index] = f(index, s[index]);
+		index++;
 	}
-	return (temp);
+	return (out);
 }
+
+//#include <stdio.h>
+//#include <stdlib.h>
+//
+//char	test(unsigned int n, char c)
+//{
+//	printf("%c\n", c);
+//	return (c + (n % 2));
+//}
+//
+//int	main(int argc, char **argv)
+//{
+//	char *printme = ft_strmapi(argv[argc - 1], &test);
+//	printf("%s", printme);
+//	free(printme);
+//}

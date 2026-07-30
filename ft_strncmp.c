@@ -3,28 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdexmund <tdexmund@student.42kl.edu.my>    +#+  +:+       +#+        */
+/*   By: thdexmun <thdexmun@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/16 16:13:52 by tdexmund          #+#    #+#             */
-/*   Updated: 2024/06/25 17:19:08 by tdexmund         ###   ########.fr       */
+/*   Created: 2026/07/26 16:35:32 by thdexmun          #+#    #+#             */
+/*   Updated: 2026/07/30 15:31:04 by thdexmun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *str1, const char *str2, size_t n)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	size_t	count;
+	size_t	index;
 
-	count = -1;
-	while ((str1[++count] || str2[count]) && count < n)
+	index = 0;
+	while (s1[index])
 	{
-		if (!((unsigned char)str1[count] == (unsigned char)str2[count]))
-		{
-			if (((unsigned char)str1[count] < (unsigned char)str2[count]))
-				return (-1);
-			return (1);
-		}
+		if ((unsigned char)s1[index] != (unsigned char)s2[index] || index == n)
+			break ;
+		index++;
 	}
-	return (0);
+	if (index == n)
+		return (0);
+	return ((unsigned char)s1[index] - (unsigned char)s2[index]);
 }
+
+//#include <stdio.h>
+//#include <string.h>
+//int	main(int argc, char **argv)
+//{
+//	int	size = 5;
+//	argv[argc - 2][3] = -42;
+//	printf("my: %d\n", ft_strncmp(argv[argc - 2], argv[argc - 1], size));
+//	printf("or: %d", strncmp(argv[argc - 2], argv[argc - 1], size));
+//}

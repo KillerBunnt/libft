@@ -3,87 +3,92 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdexmund <tdexmund@student.42kl.edu.my>    +#+  +:+       +#+        */
+/*   By: thdexmun <thdexmun@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/16 16:19:13 by tdexmund          #+#    #+#             */
-/*   Updated: 2024/06/30 14:36:41 by tdexmund         ###   ########.fr       */
+/*   Created: 2026/07/26 20:57:34 by thdexmun          #+#    #+#             */
+/*   Updated: 2026/07/30 15:41:01 by thdexmun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	countb(char const *s1, char const *set, int count1)
+static int	count_back(const char *s1, const char *set)
 {
-	int		count3;
+	int	set_index;
+	int	s1_index;
+	int	out_index;
+	int	size;
 
-	while (s1[count1 + 1])
-		count1++;
-	count3 = -1;
-	while (set[++count3])
+	size = 0;
+	s1_index = ft_strlen(s1) - 1;
+	out_index = 0;
+	while (s1_index >= 0)
 	{
-		if (s1[count1] == set[count3])
-		{
-			count1--;
-			count3 = -1;
-		}
+		set_index = 0;
+		while (set[set_index] && set[set_index] != s1[s1_index])
+			set_index++;
+		if (set[set_index])
+			size++;
+		else
+			break ;
+		s1_index--;
 	}
-	return (count1);
+	return (size);
 }
 
-static int	countf(char const *s1, char const *set)
+static int	count_front(const char *s1, const char *set)
 {
-	int		count1;
-	int		count3;
+	int	set_index;
+	int	s1_index;
+	int	out_index;
+	int	size;
 
-	count3 = -1;
-	count1 = 0;
-	while (set[++count3])
+	size = 0;
+	s1_index = 0;
+	out_index = 0;
+	while (s1[s1_index])
 	{
-		if (s1[count1] == set[count3])
-		{
-			count1++;
-			count3 = -1;
-		}
+		set_index = 0;
+		while (set[set_index] && set[set_index] != s1[s1_index])
+			set_index++;
+		if (set[set_index])
+			size++;
+		else
+			break ;
+		s1_index++;
 	}
-	return (count1);
+	return (size);
 }
 
-static void	fill(char *temp, char const *s1, int start, int end)
+char	*ft_strtrim(const char *s1, const char *set)
 {
-	int	count;
+	int		front_trim;
+	int		back_trim;
+	int		size;
+	int		index;
+	char	*out;
 
-	count = -1;
-	while (start <= end)
-	{
-		temp[++count] = s1[start];
-		start++;
-	}
-	temp[++count] = 0;
+	front_trim = count_front(s1, set);
+	back_trim = count_back(s1, set);
+	size = ft_strlen(s1) - front_trim - back_trim;
+	if (size <= 0)
+		size = 0;
+	out = (char *)malloc((size + 1) * sizeof(char));
+	if (!out)
+		return (NULL);
+	index = 0;
+	while (index < size)
+		out[index++] = s1[front_trim++];
+	out[size] = 0;
+	return (out);
 }
 
-char	*ft_strtrim(char const *s1, char const *set)
-{
-	int		start;
-	int		end;
-	char	*temp;
-
-	if (s1[0] == '\0')
-		return (ft_strdup(""));
-	start = countf(s1, set);
-	end = countb(s1, set, 0);
-	if (start > end)
-	{
-		temp = (char *)malloc(1 * sizeof(char));
-		if (!temp)
-			return (0);
-		temp[0] = 0;
-		return (temp);
-	}
-	temp = (char *)malloc((end - start + 2) * sizeof(char));
-	if (temp == 0)
-		return (0);
-	fill(temp, s1, start, end);
-	if (temp[0] == 0)
-		return (0);
-	return (temp);
-}
+//#include <stdio.h>
+//#include <stdlib.h>
+//int	main(int argc, char **argv)
+//{
+//	char *printme = ft_strtrim(argv[argc - 2],
+//		argv[argc - 1]);
+//	printf("%s", printme);
+//	free(printme);
+//}

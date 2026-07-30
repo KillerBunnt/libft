@@ -3,29 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdexmund <tdexmund@student.42kl.edu.my>    +#+  +:+       +#+        */
+/*   By: thdexmun <thdexmun@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/16 15:41:43 by tdexmund          #+#    #+#             */
-/*   Updated: 2024/06/24 17:48:28 by tdexmund         ###   ########.fr       */
+/*   Created: 2026/07/26 16:35:32 by thdexmun          #+#    #+#             */
+/*   Updated: 2026/07/30 15:48:55 by thdexmun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_memcmp(const void *str1, const void *str2, size_t byte)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	size_t				count;
-	unsigned char		*hold1;
-	unsigned char		*hold2;
+	unsigned char	*ts1;
+	unsigned char	*ts2;
+	size_t			index;
 
-	count = 0;
-	hold1 = (unsigned char *)str1;
-	hold2 = (unsigned char *)str2;
-	while (count < byte)
+	if (!s1 && !s2)
+		return (0);
+	ts1 = (unsigned char *)s1;
+	ts2 = (unsigned char *)s2;
+	if (!ts1)
+		return (-(*ts2));
+	if (!ts2)
+		return (*ts1);
+	index = 0;
+	while (index < n)
 	{
-		if (!(hold1[count] == hold2[count]))
-			return (hold1[count] - hold2[count]);
-		count++;
+		if (ts1[index] != ts2[index])
+			break ;
+		index++;
 	}
-	return (0);
+	if (index == n)
+		return (0);
+	return (ts1[index] - ts2[index]);
 }
+
+//#include <stdio.h>
+//int	main(int argc, char **argv)
+//{
+//	printf("%d", ft_memcmp(argv[argc - 2], argv[argc - 1], 5));
+//}

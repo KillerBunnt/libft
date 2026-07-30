@@ -3,19 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdexmund <tdexmund@student.42kl.edu.my>    +#+  +:+       +#+        */
+/*   By: thdexmun <thdexmun@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/16 15:36:23 by tdexmund          #+#    #+#             */
-/*   Updated: 2024/06/24 15:57:53 by tdexmund         ###   ########.fr       */
+/*   Created: 2026/07/25 14:36:45 by thdexmun          #+#    #+#             */
+/*   Updated: 2026/07/27 17:30:23 by thdexmun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isprint(int x)
+int	ft_isprint(int c)
 {
-	if (x >= ' ' && x <= '~')
+	if (c >= ' ' && c <= '~')
 		return (1);
-	else
-		return (0);
+	return (0);
 }
+
+//#include <stdio.h>
+//#include <ctype.h>
+//int main(int argc, char **argv)
+//{
+//	(void)argc;
+//	(void)argv;
+//	printf("ft: %d\n", ft_isprint(argv[1][0]));
+//	printf("or: %d\n", isprint(argv[1][0]));
+//}

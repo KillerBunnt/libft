@@ -3,26 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdexmund <tdexmund@student.42kl.edu.my>    +#+  +:+       +#+        */
+/*   By: thdexmun <thdexmun@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/16 16:00:03 by tdexmund          #+#    #+#             */
-/*   Updated: 2024/06/25 17:12:32 by tdexmund         ###   ########.fr       */
+/*   Created: 2026/07/26 16:35:32 by thdexmun          #+#    #+#             */
+/*   Updated: 2026/07/30 14:46:25 by thdexmun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(char *str, unsigned int chr)
+char	*ft_strchr(const char *s, int c)
 {
-	int	count;
-
-	count = -1;
-	while (str[++count])
+	if (!s)
+		return (NULL);
+	while (*s)
 	{
-		if ((unsigned char)str[count] == (unsigned char)chr)
-			return (str + count);
+		if (*s == (char)c)
+			return ((char *)s);
+		s++;
 	}
-	if (chr == 0)
-		return (str + count);
-	return (0);
+	if (!c)
+		return ((char *)s);
+	return (NULL);
 }
+
+//#include <stdio.h>
+//int	main(int argc, char **argv)
+//{
+//	printf("%p, %p", argv[argc - 2],
+//		ft_strchr(argv[argc - 2], argv[argc - 1][0]));
+//}

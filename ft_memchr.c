@@ -3,27 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdexmund <tdexmund@student.42kl.edu.my>    +#+  +:+       +#+        */
+/*   By: thdexmun <thdexmun@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/16 15:40:38 by tdexmund          #+#    #+#             */
-/*   Updated: 2024/06/25 17:20:35 by tdexmund         ###   ########.fr       */
+/*   Created: 2026/07/26 16:35:32 by thdexmun          #+#    #+#             */
+/*   Updated: 2026/07/30 14:03:36 by thdexmun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(void *addr, unsigned int find, unsigned int byte)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	unsigned int	count;
-	char			*test;
+	unsigned char	*temp;
+	size_t			index;
 
-	test = addr;
-	count = 0;
-	while (count < byte)
+	if (!s)
+		return (NULL);
+	temp = (unsigned char *)s;
+	index = 0;
+	while (index < n)
 	{
-		if ((unsigned char)test[count] == (unsigned char)find)
-			return (test + count);
-		count++;
+		if (temp[index] == (unsigned char)c)
+			return ((void *)&temp[index]);
+		index++;
 	}
-	return (0);
+	return (NULL);
 }
+
+//#include <stdio.h>
+//int	main(int argc, char **argv)
+//{
+//	printf("%p, %p", argv[argc - 2],
+//		ft_memchr(argv[argc - 2], argv[argc - 1][0], 5));
+//}

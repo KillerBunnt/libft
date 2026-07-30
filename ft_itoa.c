@@ -3,56 +3,69 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdexmund <tdexmund@student.42kl.edu.my>    +#+  +:+       +#+        */
+/*   By: thdexmun <thdexmun@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/16 15:36:48 by tdexmund          #+#    #+#             */
-/*   Updated: 2024/06/24 15:58:39 by tdexmund         ###   ########.fr       */
+/*   Created: 2026/07/26 20:57:34 by thdexmun          #+#    #+#             */
+/*   Updated: 2026/07/27 14:12:05 by thdexmun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*fill(int n, int count, char *send)
+static int	count_digits(int n)
 {
-	int	count2;
-	int	check;
+	int	digits;
 
-	check = 1;
-	count2 = 0;
-	send[count] = 0;
-	if (n < 0)
+	digits = 1;
+	while (n / 10 != 0)
 	{
-		count2++;
-		send[0] = '-';
-		check *= -1;
-	}
-	while (--count >= count2)
-	{
-		send[count] = ((n % 10) * check) + '0';
+		digits++;
 		n /= 10;
 	}
-	return (send);
+	return (digits);
+}
+
+static int	get_sign(int n)
+{
+	if (n < 0)
+		return (-1);
+	return (1);
 }
 
 char	*ft_itoa(int n)
 {
-	int		count;
-	int		temp;
-	char	*send;
+	int		sign;
+	char	*out;
+	int		size;
+	int		stop;
 
-	count = 0;
-	temp = n;
-	while (temp >= 1 || temp <= -1)
-	{
-		count++;
-		temp /= 10;
-	}
+	size = count_digits(n);
+	sign = get_sign(n);
 	if (n < 0)
-		count++;
-	if (n == 0)
-		count = 1;
-	send = (char *)malloc((count + 1) * sizeof(char));
-	if (send == 0)
-		return (0);
-	return (fill(n, count, send));
+		size++;
+	out = (char *)malloc((size + 1) * sizeof(char));
+	if (!out)
+		return (NULL);
+	out[size] = 0;
+	stop = 0;
+	if (n < 0)
+	{
+		out[0] = '-';
+		stop++;
+	}
+	while (--size >= stop)
+	{
+		out[size] = (n % 10) * sign + '0';
+		n /= 10;
+	}
+	return (out);
 }
+
+//#include <stdio.h>
+//#include <stdlib.h>
+//int	main(int argc, char **argv)
+//{
+//	char *printme = ft_itoa(atoi(argv[argc - 1]));
+//	printf("%s", printme);
+//	free(printme);
+//}

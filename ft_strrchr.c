@@ -3,32 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tdexmund <tdexmund@student.42kl.edu.my>    +#+  +:+       +#+        */
+/*   By: thdexmun <thdexmun@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/16 16:17:56 by tdexmund          #+#    #+#             */
-/*   Updated: 2024/06/25 17:14:16 by tdexmund         ###   ########.fr       */
+/*   Created: 2026/07/26 16:35:32 by thdexmun          #+#    #+#             */
+/*   Updated: 2026/07/28 14:59:06 by thdexmun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *str, unsigned int chr)
+char	*ft_strrchr(const char *s, int c)
 {
-	int		hold;
-	int		count;
-	int		door;
+	char	*temp;
 
-	hold = -1;
-	door = -1;
-	count = -1;
-	while (str[++count])
+	temp = NULL;
+	while (*s)
 	{
-		if ((unsigned char)str[count] == (unsigned char)chr)
-			hold = (int)count;
+		if (*s == (char)c)
+			temp = (char *)s;
+		s++;
 	}
-	if (chr == 0)
-		return ((char *)(str + count));
-	else if (hold == -1)
-		return (0);
-	return ((char *)(str + hold));
+	if (!c)
+		return ((char *)s);
+	return (temp);
 }
+
+//#include <stdio.h>
+//int	main(int argc, char **argv)
+//{
+//	printf("%p, %p", argv[argc - 2],
+//		ft_strrchr(argv[argc - 2], argv[argc - 1][0]));
+//}
