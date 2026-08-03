@@ -6,7 +6,7 @@
 /*   By: thdexmun <thdexmun@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/26 17:52:12 by thdexmun          #+#    #+#             */
-/*   Updated: 2026/07/30 13:48:35 by thdexmun         ###   ########.fr       */
+/*   Updated: 2026/07/31 16:14:58 by thdexmun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ void	*ft_calloc(size_t nmemb, size_t size)
 
 	if ((nmemb > 2147483647 || size > 2147483647)
 		|| nmemb * size > 2147483647)
-		return (NULL);
+	{
+		if (nmemb != 0 && size != 0)
+			return (NULL);
+	}
 	temp = (void *)malloc(nmemb * size);
 	if (!temp)
 		return (NULL);
