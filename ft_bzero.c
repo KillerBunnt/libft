@@ -6,7 +6,7 @@
 /*   By: thdexmun <thdexmun@student.42kl.edu.my>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/25 15:44:08 by thdexmun          #+#    #+#             */
-/*   Updated: 2026/07/28 14:44:36 by thdexmun         ###   ########.fr       */
+/*   Updated: 2026/08/02 15:07:13 by thdexmun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,8 @@ void	ft_bzero(void *s, size_t n)
 	char	*temp;
 
 	temp = (char *)s;
-	while (temp)
-	{
-		if (n-- == 0)
-			return ;
+	while (temp && n--)
 		*temp++ = 0;
-	}
 }
 
 //#include <stdio.h>
