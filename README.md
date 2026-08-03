@@ -33,7 +33,7 @@ the behaviour of each functions and the difference of functionally similar funct
 
 ## Detailes:
 
-This library containes 44 utility C functions, each function will be detailed below.
+This library containes 43 utility C functions, each function will be detailed below.
 
 ### The following functions check whether a character is a specific classification, returns 1 if it is and returns 0 if it is not.
 
