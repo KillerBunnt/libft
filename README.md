@@ -31,7 +31,7 @@ websites like stackoverflow and geeksforgeeks.
 AI was used only as a research tool to understand
 the behaviour of each functions and the difference of functionally similar functions.
 
-## Detailes:
+## Details:
 
 This library containes 43 utility C functions, each function will be detailed below.
 
